@@ -1,0 +1,24 @@
+<h2>Newest Products</h2>
+  <div ng-controller="productController">
+      <div id="productDisplay" ng-init = "limit = 5">
+        <div class="product" ng-repeat="product in products | orderBy: 'created_at' :true | limitTo: limit as results">
+          <div class="imageholder">
+            <img ng-src="{{product.image}}">
+          </div>
+          <p>{{product.name}}</p>
+          <p>({{product.qty}} left)</p>
+        </div>
+        <button ng-hide="results.length === items.length" ng-click="limit = limit +5"> Show More...</button>
+      </div>
+  </div>
+<h2>Recent Orders</h2>
+  <div ng-controller="orderController" ng-init = "limit = 3">
+    <p ng-repeat="order in orders | orderBy:'created_at':true | limitTo: limit as results ">{{order._customer.name}} purchased {{order.qty}} {{order._product.name}} {{toEpoch(order.createdAt) | humanizeRelativeTime}}</p>
+    <a href="" ng-hide="results.length === items.length" ng-click="limit = items.length"> Show All Orders... </a>
+  </div>
+
+<h2>New Customers</h2>
+  <div ng-controller="customerController" ng-init = "limit = 3">
+    <p ng-repeat="customer in customers | orderBy:'created_at':true | limitTo: limit as results">{{customer.name}} joined the store {{toEpoch(customer.createdAt) | humanizeRelativeTime}} ... </p>
+    <a href="" ng-hide="results.length === items.length" ng-click="limit = items.length"> Show All Customers...</a>
+  </div>

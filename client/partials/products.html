@@ -1,0 +1,22 @@
+<h2>Products</h2>
+<div id="productBox">
+  <div id="addField">
+    <h2>Add a new Product</h2>
+    <form ng-submit="add()">
+      <p>Name: <input type='text' ng-model="product.name"></p>
+      <p>Image(URL): <input type='text' ng-model="product.image"></p>
+      <p>Description: <textarea rows="6" cols="20" ng-model="product.desc"></textarea></p>
+      <p>Initial Quantity: <input type='text' ng-model="product.qty"></p>
+      <input type="submit" value="Create" class="btn btn-primary">
+    </form>
+  </div>
+</div>
+<div id="productDisplay">
+  <div class="product" ng-repeat="product in products">
+    <div class="imageholder">
+      <img ng-src="{{product.image}}">
+    </div>
+    <p>{{product.name}}</p>
+    <p>({{product.qty}} left)</p>
+  </div>
+</div>

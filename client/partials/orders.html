@@ -1,0 +1,37 @@
+<h2>Add a new Order: </h2>
+<div id="orderField">
+  <form ng-submit = "add()">
+    <p>Customer:
+      <select ng-model="customer">
+        <option  value="{{customer._id}}" ng-repeat="customer in customers">{{customer.name}}</option>
+      </select>
+    </p>
+    <p>Order:
+      <select ng-change="prodQty(product)" ng-model="product"
+      ng-options="product as product.name for product in products">
+      </select>
+      <select ng-model="product.qty">
+        <option ng-repeat="i in quantity | range">{{i}}</option>
+      </select>
+    </p>
+    <input class="btn btn-primary" type="submit" value="Order">
+  </form>
+  <div id="orderBox">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Customer Name</th>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+        <tr ng-repeat="order in orders">
+          <th>{{order._customer.name}}</th>
+          <th>{{order._product.name}}</th>
+          <th>{{order.qty}}</th>
+          <th>{{order.createdAt | date: 'short'}}</th>
+        </tr>
+    </table>
+  </div>
+</div>
